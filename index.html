@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Архитектор своей реальности | Мини-курс Надежды</title>
     
     <!-- Подключение шрифтов -->
@@ -23,7 +23,6 @@
                         goldLight: '#f6d389',
                         darkBg: '#0b0a09',
                         darkCard: '#151311',
-                        darkCardMuted: 'rgba(23, 20, 17, 0.72)'
                     },
                     fontFamily: {
                         sans: ['Montserrat', 'sans-serif'],
@@ -53,11 +52,6 @@
             backdrop-filter: blur(14px); 
             border: 1px solid rgba(229, 169, 60, 0.18); 
         }
-        .glass-card-subtle {
-            background: rgba(16, 14, 12, 0.65);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.07);
-        }
         
         /* Стили стрелок Swiper */
         .swiper-button-next, .swiper-button-prev {
@@ -81,10 +75,6 @@
         @media (max-width: 768px) { 
             .swiper-button-next, .swiper-button-prev { display: none !important; } 
         }
-        
-        /* Скроллбар */
-        .hide-scroll::-webkit-scrollbar { display: none; }
-        .hide-scroll { -ms-overflow-style: none; scrollbar-width: none; }
 
         /* Валидация формы */
         .input-error { 
@@ -102,7 +92,7 @@
         .input-error + .error-message { display: block; }
     </style>
 
-    <!-- МЕТА-ПИКСЕЛЬ (При необходимости замените ID) -->
+    <!-- МЕТА-ПИКСЕЛЬ -->
     <script>
     !function(f,b,e,v,n,t,s)
     {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -116,26 +106,26 @@
     fbq('track', 'PageView');
     </script>
 </head>
-<body class="font-sans antialiased selection:bg-goldAccent selection:text-black pb-20 md:pb-0 relative overflow-x-hidden"> 
+<body class="font-sans antialiased selection:bg-goldAccent selection:text-black pb-24 md:pb-0 relative overflow-x-hidden"> 
 
     <!-- ФОНОВЫЕ СВЕТОВЫЕ ЭФФЕКТЫ -->
     <div class="fixed inset-0 w-full h-full bg-[#0b0a09] z-[-3]"></div>
-    <div class="fixed top-[-10%] left-1/2 -translate-x-1/2 w-[700px] h-[700px] bg-goldAccent/10 rounded-full blur-[160px] pointer-events-none z-[-2]"></div>
+    <div class="fixed top-[-10%] left-1/2 -translate-x-1/2 w-[650px] h-[650px] bg-goldAccent/10 rounded-full blur-[160px] pointer-events-none z-[-2]"></div>
     <div class="fixed bottom-[-10%] right-[-5%] w-[500px] h-[500px] bg-[#d49432]/10 rounded-full blur-[150px] pointer-events-none z-[-2]"></div>
 
-    <!-- ФИКСИРОВАННАЯ КНОПКА ДЛЯ МОБИЛЬНЫХ -->
-    <div class="fixed bottom-0 left-0 w-full z-50 p-3 bg-black/85 backdrop-blur-md border-t border-goldAccent/30 md:hidden">
-        <button class="open-modal-btn block w-full bg-gradient-to-r from-goldAccent to-[#d49432] text-black font-extrabold text-sm py-3 text-center rounded-xl uppercase tracking-wider shadow-[0_0_20px_rgba(229,169,60,0.4)] transition transform active:scale-95">
+    <!-- ФИКСИРОВАННАЯ КНОПКА ДЛЯ МОБИЛЬНЫХ (IPHONE 14 PRO & OTHERS) -->
+    <div class="fixed bottom-0 left-0 w-full z-50 p-3 bg-black/90 backdrop-blur-md border-t border-goldAccent/30 md:hidden">
+        <button class="open-modal-btn block w-full bg-gradient-to-r from-goldAccent to-[#d49432] text-black font-extrabold text-sm py-3.5 text-center rounded-xl uppercase tracking-wider shadow-[0_0_20px_rgba(229,169,60,0.4)] transition transform active:scale-95">
             ХОЧУ НА КУРС
         </button>
     </div>
 
     <!-- БЛОК 1: ГЕРОЙ-ЭКРАН -->
-    <header class="relative min-h-[92vh] flex flex-col justify-between pt-8 pb-12 px-4 z-10 border-b border-goldAccent/15">
+    <header class="relative min-h-[90vh] flex flex-col justify-between pt-8 pb-12 px-4 z-10 border-b border-goldAccent/15">
         <div class="relative z-10 w-full max-w-5xl mx-auto text-center my-auto pt-6 flex flex-col items-center">
             
             <div class="inline-flex items-center gap-2 border border-goldAccent/40 bg-goldAccent/10 px-4 py-1.5 rounded-full text-goldLight text-[11px] md:text-xs font-semibold tracking-widest uppercase mb-6 backdrop-blur-md">
-                <span class="w-2 h-2 rounded-full bg-goldAccent animate-pulse"></span> 5-дневный трансформационный мини-курс
+                <span class="w-2 h-2 rounded-full bg-goldAccent animate-pulse"></span> 5-дневный мини-курс
             </div>
 
             <h1 class="text-3xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-4 uppercase text-glow-gold tracking-wide text-white">
@@ -147,7 +137,7 @@
             </p>
             
             <div class="text-sm md:text-base text-gray-300 mb-8 font-light max-w-2xl mx-auto leading-relaxed space-y-2">
-                <p>5 уроков, чтобы почувствовать вдохновение, подъём и желание жить и творить.</p>
+                <p>5 уроков, чтобы почувствовать вдохновение, подъём и желание жить и творить</p>
                 <p class="text-xs md:text-sm text-goldAccent/90 font-medium tracking-wide">
                     · практики внутри · конспекты и разбор алгоритма подсознания ·
                 </p>
@@ -164,7 +154,7 @@
                 </div>
                 
                 <div class="text-[10px] text-gray-300 uppercase tracking-widest mb-2 mt-2 font-medium">
-                    До повышения стоимости:
+                    До увеличения цены:
                 </div>
                 <div class="flex justify-center gap-3 text-xl font-bold mb-4 text-white" id="timer">
                     <div class="flex flex-col items-center bg-black/40 px-3 py-1.5 rounded-lg border border-goldAccent/20">
@@ -185,104 +175,32 @@
         </div>
     </header>
 
-    <!-- БЛОК 2: ДВЕ ДОРОГИ (Фоновая картинка и сравнение путей) -->
-    <section class="py-24 px-4 relative z-10 border-b border-goldAccent/20 overflow-hidden" 
-             style="background: linear-gradient(180deg, rgba(11,10,9,0.92) 0%, rgba(18,15,12,0.95) 50%, rgba(11,10,9,0.96) 100%), url('roads-bg.jpg') center/cover no-repeat;">
-        
-        <div class="max-w-5xl mx-auto relative z-10">
+    <!-- БЛОК 2: ТОЛЬКО КАРТИНКА (БЕЗ ЗАТЕМНЕНИЯ, БЕЗ СЖАТИЯ, ИДЕАЛЬНО ПОД IPHONE 14 PRO) -->
+    <section class="py-12 md:py-20 px-3 md:px-6 relative z-10 border-b border-goldAccent/20 flex flex-col items-center bg-transparent">
+        <div class="w-full max-w-[420px] md:max-w-2xl lg:max-w-3xl mx-auto flex flex-col items-center">
             
-            <div class="text-center mb-16">
-                <!-- Значок солнца / ориентира вверху -->
-                <div class="w-12 h-12 mx-auto mb-4 rounded-full bg-goldAccent/20 border border-goldAccent/40 flex items-center justify-center text-goldLight shadow-[0_0_20px_rgba(229,169,60,0.4)]">
-                    ✦
-                </div>
-                <h2 class="text-3xl md:text-5xl font-extrabold text-white uppercase tracking-wider mb-3">
-                    Две дороги. <span class="text-goldAccent text-glow-gold">Выбираешь ты</span>
-                </h2>
-                <p class="text-gray-300 max-w-xl mx-auto text-sm md:text-base font-light italic">
-                    Каждый день мы выбираем, как будет выглядеть наша жизнь. Вот две возможные дороги:
-                </p>
+            <!-- Картинка выводится в оригинальном виде: без оверлеев, без затемнений и кропа -->
+            <div class="w-full rounded-2xl md:rounded-3xl overflow-hidden shadow-[0_0_35px_rgba(229,169,60,0.25)] border border-goldAccent/30 bg-black">
+                <img 
+                    src="roads-bg.jpg" 
+                    alt="Две дороги. Выбираешь ты" 
+                    class="w-full h-auto block object-contain select-none"
+                    loading="eager"
+                >
             </div>
 
-            <!-- Сетка дорог -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-                
-                <!-- Левая ветка: Всё остаётся как есть -->
-                <div class="glass-card-subtle p-6 md:p-8 rounded-3xl border border-white/10 flex flex-col justify-between relative overflow-hidden">
-                    <div class="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full blur-2xl"></div>
-                    <div>
-                        <div class="text-xs uppercase tracking-widest text-gray-500 font-semibold mb-2">Первый путь</div>
-                        <h3 class="text-2xl font-bold text-gray-300 mb-6">Всё остаётся как есть</h3>
-                        
-                        <div class="space-y-4">
-                            <div class="bg-black/40 border border-white/5 p-4 rounded-xl flex items-start gap-3">
-                                <span class="w-2 h-2 rounded-full bg-gray-500 mt-2 shrink-0"></span>
-                                <p class="text-sm text-gray-300">Всё идёт по привычному кругу</p>
-                            </div>
-                            <div class="bg-black/40 border border-white/5 p-4 rounded-xl flex items-start gap-3">
-                                <span class="w-2 h-2 rounded-full bg-gray-500 mt-2 shrink-0"></span>
-                                <p class="text-sm text-gray-300">Желания остаются желаниями, а до реальных шагов пока не доходит</p>
-                            </div>
-                            <div class="bg-black/40 border border-white/5 p-4 rounded-xl flex items-start gap-3">
-                                <span class="w-2 h-2 rounded-full bg-gray-500 mt-2 shrink-0"></span>
-                                <p class="text-sm text-gray-300">Те же ситуации в работе, деньгах и отношениях приходят снова</p>
-                            </div>
-                            <div class="bg-black/40 border border-white/5 p-4 rounded-xl flex items-start gap-3">
-                                <span class="w-2 h-2 rounded-full bg-gray-500 mt-2 shrink-0"></span>
-                                <p class="text-sm text-gray-300">Ощущение, что жизнь происходит с тобой, а не по твоему замыслу</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Правая ветка: Ты строишь свою реальность -->
-                <div class="glass-card p-6 md:p-8 rounded-3xl border-2 border-goldAccent/60 gold-shadow flex flex-col justify-between relative overflow-hidden bg-gradient-to-b from-[#1b1712]/90 to-[#120f0d]/95">
-                    <div class="absolute top-0 right-0 w-36 h-36 bg-goldAccent/15 rounded-full blur-3xl"></div>
-                    <div>
-                        <div class="text-xs uppercase tracking-widest text-goldAccent font-semibold mb-2">Твой осознанный выбор</div>
-                        <h3 class="text-2xl font-bold text-goldLight mb-6 text-glow-gold">Ты строишь свою реальность</h3>
-                        
-                        <div class="space-y-4">
-                            <div class="bg-black/60 border border-goldAccent/30 p-4 rounded-xl flex items-start gap-3 shadow-[0_0_15px_rgba(229,169,60,0.08)]">
-                                <span class="w-2.5 h-2.5 rounded-full bg-goldAccent mt-1.5 shrink-0 shadow-[0_0_8px_rgba(229,169,60,0.8)]"></span>
-                                <p class="text-sm text-gray-100">Ты понимаешь, как устроена твоя жизнь и откуда берутся события</p>
-                            </div>
-                            <div class="bg-black/60 border border-goldAccent/30 p-4 rounded-xl flex items-start gap-3 shadow-[0_0_15px_rgba(229,169,60,0.08)]">
-                                <span class="w-2.5 h-2.5 rounded-full bg-goldAccent mt-1.5 shrink-0 shadow-[0_0_8px_rgba(229,169,60,0.8)]"></span>
-                                <p class="text-sm text-gray-100">Видишь, что тебя держало, и знаешь, как это менять</p>
-                            </div>
-                            <div class="bg-black/60 border border-goldAccent/30 p-4 rounded-xl flex items-start gap-3 shadow-[0_0_15px_rgba(229,169,60,0.08)]">
-                                <span class="w-2.5 h-2.5 rounded-full bg-goldAccent mt-1.5 shrink-0 shadow-[0_0_8px_rgba(229,169,60,0.8)]"></span>
-                                <p class="text-sm text-gray-100">Появляется вдохновение, подъём и желание жить и творить</p>
-                            </div>
-                            <div class="bg-black/60 border border-goldAccent/30 p-4 rounded-xl flex items-start gap-3 shadow-[0_0_15px_rgba(229,169,60,0.08)]">
-                                <span class="w-2.5 h-2.5 rounded-full bg-goldAccent mt-1.5 shrink-0 shadow-[0_0_8px_rgba(229,169,60,0.8)]"></span>
-                                <p class="text-sm text-gray-100">Ты чувствуешь, что руль в твоих руках, и двигаешься к жизни, которую хочешь</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
-            <!-- Итог блока -->
-            <div class="text-center max-w-2xl mx-auto space-y-6">
-                <p class="text-sm md:text-base text-gray-300 font-light leading-relaxed">
-                    Ни одна из дорог не «правильная» или «неправильная».<br>
-                    <span class="text-white font-semibold">Но только на одной из них ты сам выбираешь, куда идти.</span>
-                </p>
-                <div>
-                    <button class="open-modal-btn inline-block bg-gradient-to-r from-goldAccent to-[#d49432] text-black font-extrabold py-4 px-10 rounded-xl uppercase tracking-wider transition transform hover:scale-105 shadow-[0_0_25px_rgba(229,169,60,0.45)]">
-                        ХОЧУ ВЫБРАТЬ ЭТУ ДОРОГУ
-                    </button>
-                </div>
+            <!-- Кнопка перехода к действию -->
+            <div class="mt-8 md:mt-10 w-full text-center">
+                <button class="open-modal-btn w-full md:w-auto inline-block bg-gradient-to-r from-goldAccent to-[#d49432] text-black font-extrabold py-4 px-10 rounded-xl uppercase tracking-wider transition transform hover:scale-105 shadow-[0_0_25px_rgba(229,169,60,0.45)]">
+                    ХОЧУ ВЫБРАТЬ ЭТУ ДОРОГУ
+                </button>
             </div>
 
         </div>
     </section>
 
-    <!-- БЛОК 3: ЧТО ИЗМЕНИТСЯ, КОГДА ТЫ НАЧНЁШЬ СТРОИТЬ СВОЮ РЕАЛЬНОСТЬ -->
-    <section class="py-24 px-4 relative z-10 border-b border-goldAccent/15 bg-black/40">
+    <!-- БЛОК 3: ЧТО ИЗМЕНИТСЯ -->
+    <section class="py-20 px-4 relative z-10 border-b border-goldAccent/15 bg-black/40">
         <div class="max-w-5xl mx-auto">
             
             <div class="text-center mb-16">
@@ -291,12 +209,12 @@
                     Что изменится, когда ты начнёшь <br class="hidden md:block">
                     <span class="text-goldAccent text-glow-gold">строить свою реальность</span>
                 </h2>
-                <p class="text-sm md:text-base text-gray-300 max-w-2xl mx-auto font-light">
+                <p class="text-sm md:text-base text-gray-300 max-w-2xl mx-auto font-light leading-relaxed">
                     Это не про «стать другим человеком». Это про то, как ты начинаешь чувствовать и проживать свою жизнь.
                 </p>
             </div>
 
-            <!-- 6 Карточек в теплом визуале -->
+            <!-- 6 Карточек -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-14">
                 
                 <div class="glass-card p-6 rounded-2xl border border-goldAccent/25 hover:border-goldAccent/60 transition duration-300 relative group flex flex-col justify-between">
@@ -330,7 +248,7 @@
                         </div>
                         <h4 class="text-white font-bold text-lg mb-2 leading-snug">Увидишь, где ты сейчас и куда хочешь</h4>
                         <p class="text-gray-300 font-light text-sm leading-relaxed">
-                            Появляется точка А и точка Б. И чёткое понимание того, что конкретно мешало двигаться между ними все эти годы.
+                            Появляется точка А и точка Б. И понимание, что мешало двигаться между ними.
                         </p>
                     </div>
                 </div>
@@ -340,9 +258,9 @@
                         <div class="w-10 h-10 rounded-lg bg-goldAccent/15 border border-goldAccent/30 flex items-center justify-center text-goldAccent font-bold text-sm mb-4">
                             04
                         </div>
-                        <h4 class="text-white font-bold text-lg mb-2 leading-snug">Выйдешь из повторяющихся сюжетов</h4>
+                        <h4 class="text-white font-bold text-lg mb-2 leading-snug">Перестанешь жить в повторяющихся сюжетах</h4>
                         <p class="text-gray-300 font-light text-sm leading-relaxed">
-                            Видишь сценарии, которые приходили снова и снова в финансах, работе или партнерстве, и понимаешь, как экологично из них выходить.
+                            Видишь сценарии, которые приходили снова и снова, и знаешь, как из них выходить.
                         </p>
                     </div>
                 </div>
@@ -354,7 +272,7 @@
                         </div>
                         <h4 class="text-white font-bold text-lg mb-2 leading-snug">Станешь честнее с собой, и станет легче</h4>
                         <p class="text-gray-300 font-light text-sm leading-relaxed">
-                            Когда перестаёшь приукрашивать и прибеднять даже в мелочах, в жизни проявляется то, что раньше постоянно проходило мимо.
+                            Когда перестаёшь приукрашивать и прибеднять даже в мелочах, в жизни проявляется то, что раньше проходило мимо.
                         </p>
                     </div>
                 </div>
@@ -366,7 +284,7 @@
                         </div>
                         <h4 class="text-white font-bold text-lg mb-2 leading-snug">Вернутся вдохновение и лёгкость</h4>
                         <p class="text-gray-300 font-light text-sm leading-relaxed">
-                            Появляется внутренний подъём, живой интерес к каждому дню и естественное желание творить и действовать без самосаботажа.
+                            Появляется подъём, интерес к жизни и желание творить.
                         </p>
                     </div>
                 </div>
@@ -389,8 +307,8 @@
         </div>
     </section>
 
-    <!-- БЛОК 4: АВТОР КУРСА -->
-    <section class="py-24 px-4 max-w-5xl mx-auto relative z-10 border-b border-goldAccent/15">
+    <!-- БЛОК 4: АВТОР КУРСА (ОЧИЩЕН ОТ ЛИШНЕГО ТЕКСТА И ПЛАШЕК) -->
+    <section class="py-20 px-4 max-w-5xl mx-auto relative z-10 border-b border-goldAccent/15">
         <div class="flex flex-col md:flex-row items-center gap-10">
             
             <div class="w-full md:w-[45%]">
@@ -407,54 +325,38 @@
                 
                 <h3 class="text-2xl md:text-3xl font-bold text-white mb-2">Надежда</h3>
                 <p class="text-goldLight font-medium text-base md:text-lg mb-6 italic">
-                    «Я прошла этот путь сама. Я сама свой главный кейс.»
+                    «Я прошла этот путь сама. Я сама свой кейс.»
                 </p>
                 
                 <div class="space-y-4 text-gray-300 font-light text-sm md:text-base leading-relaxed">
-                    <p>Привет, я Надежда. Я не просто рассказываю, как строить свою реальность. Я прошла этот путь изнутри.</p>
+                    <p>Привет, я Надежда. Я не просто рассказываю, как строить свою реальность. Я прошла этот путь сама.</p>
                     
-                    <p>Раньше я жила совсем по-другому: чувствовала постоянную нехватку ресурса, хождение по замкнутому кругу и непонимание, почему при всех усилиях жизнь не становится такой, как хочется в глубине души.</p>
+                    <p>Раньше я жила совсем по-другому: [1-2 предложения о том, как это было. Какое было состояние, что чувствовала, как выглядела жизнь].</p>
                     
-                    <p>Потом я поняла, как на самом деле устроена наша реальность: как наши скрытые алгоритмы подсознания и вытесненные чувства день за днем формируют материальные события.</p>
+                    <p>Потом я поняла, как на самом деле устроена моя реальность: [что стало переломом, одним-двумя предложениями].</p>
                     
-                    <p>Сегодня моя жизнь выглядит совершенно иначе — это спокойная опора на себя, глубокие доверительные отношения, ясность в делах и свобода создавать свой день из радости и созидания.</p>
+                    <p>Сегодня моя жизнь выглядит иначе: [2-3 конкретные картинки. Например, как проходит твоё утро, что в отношениях с детьми, чем занимаешься, что чувствуешь внутри].</p>
                     
                     <p class="text-white font-medium">
                         Я не искала лёгкого пути. Я просто начала строить свою жизнь сама, шаг за шагом. Всё, что я даю на этом курсе, я сначала проверила на себе.
                     </p>
-                </div>
-                
-                <!-- Факты доверия -->
-                <div class="grid grid-cols-2 gap-3 mt-6 pt-6 border-t border-goldAccent/20">
-                    <div class="bg-black/40 p-3 rounded-xl border border-goldAccent/20 text-center">
-                        <div class="text-goldAccent font-extrabold text-xl md:text-2xl">100%</div>
-                        <div class="text-[11px] text-gray-300 uppercase tracking-wider mt-0.5">Практический опыт</div>
-                    </div>
-                    <div class="bg-black/40 p-3 rounded-xl border border-goldAccent/20 text-center">
-                        <div class="text-goldAccent font-extrabold text-xl md:text-2xl">5 шагов</div>
-                        <div class="text-[11px] text-gray-300 uppercase tracking-wider mt-0.5">Четкая методология</div>
-                    </div>
-                </div>
-
-                <div class="mt-6">
-                    <p class="text-goldLight font-semibold text-sm">Хочешь так же? Попробуй. Я покажу, как это сделала я.</p>
                 </div>
             </div>
 
         </div>
     </section>
 
-    <!-- БЛОК 5: ПРОГРАММА КУРСА (5 ДНЕЙ) -->
-    <section class="py-24 px-4 relative z-10 border-b border-goldAccent/15 bg-black/40">
+    <!-- БЛОК 5: ПРОГРАММА КУРСА (БЕЗ ПЛАШЕК «РЕЗУЛЬТАТ») -->
+    <section class="py-20 px-4 relative z-10 border-b border-goldAccent/15 bg-black/40">
         <div class="max-w-4xl mx-auto">
             
             <div class="text-center mb-16">
-                <div class="text-xs uppercase tracking-widest text-goldAccent font-semibold mb-2">Пошаговый маршрут</div>
+                <div class="text-xs uppercase tracking-widest text-goldAccent font-semibold mb-2">Пошаговый план</div>
                 <h2 class="text-3xl md:text-5xl font-extrabold text-white tracking-wider uppercase mb-4">
                     Программа <span class="text-goldAccent text-glow-gold">курса</span>
                 </h2>
                 <p class="text-gray-300 text-sm md:text-base font-light max-w-2xl mx-auto leading-relaxed">
-                    Пять дней, пять уроков. В каждом ты делаешь осознанный шаг от точки А, где ты сейчас, к точке Б, где хочешь быть.
+                    Пять дней, пять уроков. В каждом ты делаешь шаг от точки А, где ты сейчас, к точке Б, где хочешь быть.
                 </p>
             </div>
             
@@ -467,14 +369,11 @@
                     </div>
                     <div>
                         <h4 class="text-white font-bold text-xl mb-2 tracking-wide text-glow-gold">
-                            Как формируется реальность
+                            День 1. Как формируется реальность
                         </h4>
-                        <p class="text-gray-300 font-light text-sm md:text-base leading-relaxed mb-3">
-                            Главный принцип курса: ты сам формируешь свою реальность своими мыслями, чувствами и тем, что хранится внутри. Разбираем, как вытесненные части участвуют в событиях, почему важно замечать свои эмоции и как перейти от ощущения «минного поля» к позиции игрока, который влияет на ход игры.
+                        <p class="text-gray-300 font-light text-sm md:text-base leading-relaxed">
+                            Главный принцип курса: ты сам формируешь свою реальность своими мыслями, чувствами и тем, что хранится внутри. Разбираем, как вытесненные части участвуют в событиях, почему важно замечать свои эмоции и как перейти от ощущения «минного поля» к позиции игрока, который влияет на ход игры. В конце первая практика в наушниках: ты берёшь ответственность за свою жизнь в свои руки.
                         </p>
-                        <div class="inline-flex items-center gap-2 text-xs font-semibold text-goldLight bg-black/40 px-3 py-1 rounded-lg border border-goldAccent/30">
-                            <span>🎧</span> Практика в наушниках: ты берёшь ответственность за жизнь в свои руки
-                        </div>
                     </div>
                 </div>
 
@@ -485,14 +384,11 @@
                     </div>
                     <div>
                         <h4 class="text-white font-bold text-xl mb-2 tracking-wide text-glow-gold">
-                            Внутренняя реальность подсознания
+                            День 2. Внутренняя реальность подсознания
                         </h4>
-                        <p class="text-gray-300 font-light text-sm md:text-base leading-relaxed mb-3">
-                            То, что заложено внутри тебя: как ты себя ощущаешь и чего считаешь себя достойным. Эта внутренняя картинка напрямую отражается на работе, клиентах, теле и отношениях, и от неё зависит, какие люди и события приходят в твою жизнь.
+                        <p class="text-gray-300 font-light text-sm md:text-base leading-relaxed">
+                            То, что заложено внутри тебя: как ты себя ощущаешь и чего считаешь себя достойным. Эта внутренняя картинка отражается на работе, клиентах, теле и отношениях, и от неё зависит, какие люди и события приходят в твою жизнь. Видим свою точку А и то, что удерживает тебя на месте.
                         </p>
-                        <div class="inline-flex items-center gap-2 text-xs font-semibold text-goldLight bg-black/40 px-3 py-1 rounded-lg border border-goldAccent/30">
-                            <span>🔍</span> Результат: видим свою истинную точку А и то, что удерживает на месте
-                        </div>
                     </div>
                 </div>
 
@@ -503,14 +399,11 @@
                     </div>
                     <div>
                         <h4 class="text-white font-bold text-xl mb-2 tracking-wide text-glow-gold">
-                            Внешняя реальность подсознания
+                            День 3. Внешняя реальность подсознания
                         </h4>
-                        <p class="text-gray-300 font-light text-sm md:text-base leading-relaxed mb-3">
-                            То, что отвечает за движение вовне: бизнес, масштаб, видение будущего, проявленность. Видим свою точку Б, почему ты одновременно хочешь перемен и сопротивляешься им, и как соединить внутреннее и внешнее, чтобы двигаться к желаемому с ощущением целостности.
+                        <p class="text-gray-300 font-light text-sm md:text-base leading-relaxed">
+                            То, что отвечает за движение вовне: бизнес, масштаб, видение будущего, проявленность. Видим свою точку Б, почему ты хочешь перемен и одновременно им сопротивляешься, и как соединить внутреннее и внешнее, чтобы двигаться к желаемому с ощущением целостности.
                         </p>
-                        <div class="inline-flex items-center gap-2 text-xs font-semibold text-goldLight bg-black/40 px-3 py-1 rounded-lg border border-goldAccent/30">
-                            <span>🚀</span> Результат: синхронизация желаний и действий без выгорания
-                        </div>
                     </div>
                 </div>
 
@@ -521,14 +414,11 @@
                     </div>
                     <div>
                         <h4 class="text-white font-bold text-xl mb-2 tracking-wide text-glow-gold">
-                            Повторы, контракты родовой системы и божественная иерархия
+                            День 4. Повторы, контракты родовой системы и божественная иерархия
                         </h4>
-                        <p class="text-gray-300 font-light text-sm md:text-base leading-relaxed mb-3">
-                            Практический день. Находим сценарии, которые повторяются в твоей жизни и пришли из семьи. Разбираем «контракт» с родовой системой: убеждения, с которыми человек соглашается при рождении (например, «деньги — это зло»), и как их менять. Знакомимся с законом иерархии: почему его нарушение блокирует результат и как строить успех без потерь в здоровье, деньгах и отношениях.
+                        <p class="text-gray-300 font-light text-sm md:text-base leading-relaxed">
+                            Практический день. Находим сценарии, которые повторяются в твоей жизни и пришли из семьи. Разбираем «контракт» с родовой системой: убеждения, с которыми человек соглашается при рождении, например «деньги это зло», и как их менять. Знакомимся с законом иерархии: почему его нарушение ломает результат и как строить успех без потерь в здоровье, деньгах и отношениях.
                         </p>
-                        <div class="inline-flex items-center gap-2 text-xs font-semibold text-goldLight bg-black/40 px-3 py-1 rounded-lg border border-goldAccent/30">
-                            <span>🛡</span> Результат: разрыв деструктивных циклов и возврат сил
-                        </div>
                     </div>
                 </div>
 
@@ -539,14 +429,11 @@
                     </div>
                     <div>
                         <h4 class="text-white font-bold text-xl mb-2 tracking-wide text-glow-gold">
-                            Переход на новый уровень
+                            День 5. Переход на новый уровень
                         </h4>
-                        <p class="text-gray-300 font-light text-sm md:text-base leading-relaxed mb-3">
-                            Финальный день. Закрепляем изменения и фиксируем новое состояние: экологично отпускаем старое и входим в новое, в котором хочется жить, выбирать и творить. Смотрим, что делать дальше и как мягко интегрировать эти инструменты в реальную повседневную жизнь.
+                        <p class="text-gray-300 font-light text-sm md:text-base leading-relaxed">
+                            Финальный день. Закрепляем изменения и фиксируем новое состояние: отпускаем старое и входим в новое, в котором хочется жить и творить. Смотрим, что делать дальше и как интегрировать єто в реальную жизнь.
                         </p>
-                        <div class="inline-flex items-center gap-2 text-xs font-semibold text-goldLight bg-black/40 px-3 py-1 rounded-lg border border-goldAccent/30">
-                            <span>✨</span> Результат: чёткий алгоритм действий архитектора своей жизни
-                        </div>
                     </div>
                 </div>
 
@@ -560,11 +447,11 @@
         </div>
     </section>
 
-    <!-- БЛОК 6: ОТЗЫВЫ КЛИЕНТОВ -->
-    <section class="py-24 px-4 overflow-hidden border-b border-goldAccent/15 relative z-10 bg-black/50">
+    <!-- БЛОК 6: ВІДГУКИ -->
+    <section class="py-20 px-4 overflow-hidden border-b border-goldAccent/15 relative z-10 bg-black/50">
         <div class="max-w-6xl mx-auto">
             <div class="text-center mb-12">
-                <div class="text-xs uppercase tracking-widest text-goldAccent font-semibold mb-2">Результаты</div>
+                <div class="text-xs uppercase tracking-widest text-goldAccent font-semibold mb-2">Отзывы</div>
                 <h2 class="text-2xl md:text-4xl font-extrabold uppercase text-white">
                     Что говорят мои клиенты <br class="md:hidden">
                     <span class="text-goldAccent text-glow-gold">о работе со мной</span>
@@ -611,24 +498,6 @@
                             </div>
                         </div>
 
-                        <div class="swiper-slide flex justify-center">
-                            <div class="w-[280px] h-[400px] md:w-[320px] md:h-[450px] glass-card rounded-2xl flex items-center justify-center p-2 shadow-lg transition-transform hover:scale-[1.02] border border-goldAccent/30">
-                                <img src="v7.jpg" alt="Отзыв 7" class="max-w-full max-h-full object-contain cursor-pointer review-img rounded-xl">
-                            </div>
-                        </div>
-
-                        <div class="swiper-slide flex justify-center">
-                            <div class="w-[280px] h-[400px] md:w-[320px] md:h-[450px] glass-card rounded-2xl flex items-center justify-center p-2 shadow-lg transition-transform hover:scale-[1.02] border border-goldAccent/30">
-                                <img src="v8.jpg" alt="Отзыв 8" class="max-w-full max-h-full object-contain cursor-pointer review-img rounded-xl">
-                            </div>
-                        </div>
-
-                        <div class="swiper-slide flex justify-center">
-                            <div class="w-[280px] h-[400px] md:w-[320px] md:h-[450px] glass-card rounded-2xl flex items-center justify-center p-2 shadow-lg transition-transform hover:scale-[1.02] border border-goldAccent/30">
-                                <img src="v9.jpg" alt="Отзыв 9" class="max-w-full max-h-full object-contain cursor-pointer review-img rounded-xl">
-                            </div>
-                        </div>
-
                     </div>
                 </div>
                 <div class="swiper-button-next"></div>
@@ -651,7 +520,7 @@
                 ЗАБРОНИРОВАТЬ МЕСТО
             </h3>
             <p class="text-center text-gray-300 text-xs md:text-sm mb-6 font-light">
-                Введите контактные данные для регистрации на мини-курс
+                Введите данные для участия в мини-курсе
             </p>
             
             <form id="popupForm" class="space-y-3.5" novalidate>
@@ -684,7 +553,7 @@
                 </div>
 
                 <div class="bg-black/40 border border-white/5 rounded-xl p-3 text-[11px] text-gray-400 leading-relaxed text-center">
-                    Доступ к учебным материалам и закрытому каналу курса открывается сразу после подтверждения оплаты.
+                    Доступ к учебным материалам открывается сразу после оплаты.
                 </div>
                 
                 <div class="pt-1">
@@ -756,7 +625,7 @@
 
         const closeLightboxModal = () => {
             lightbox.classList.add('opacity-0'); 
-            setTimeout(() => {
+            setTimeout(() => { 
                 lightbox.classList.add('hidden'); 
                 lightboxImg.src = '';
                 document.body.style.overflow = ''; 
@@ -849,7 +718,6 @@
                 submitBtn.innerText = 'ОБРАБОТКА...';
                 submitBtn.disabled = true;
 
-                // Ссылки на Webhook и Платежную систему (замените на свои актуальные)
                 const googleScriptURL = 'https://script.google.com/macros/s/AKfycbwwvrn6nNWql1vaAF6qx6kUNl5GcCGMU5z8vBaqtWgQ3ZQCXL7p6b_AP0GqC4Po_E2X8g/exec'; 
                 const paymentURL = 'https://secure.wayforpay.com/button/bce3402b76e97';
 
@@ -880,7 +748,7 @@
             }
         });
 
-        // Снятие ошибок при вводе
+        // Снятие ошибок
         [document.getElementById('pop-name'), document.getElementById('pop-phone'), document.getElementById('pop-telegram')].forEach(input => {
             input.addEventListener('input', () => {
                 input.classList.remove('input-error');
