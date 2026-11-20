@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Архитектор своей реальности | Мини-курс Надежды</title>
+    
+    <!-- Подключение шрифтов -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Swiper.js CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        goldAccent: '#e5a93c',
+                        goldHover: '#cf9228',
+                        goldLight: '#f6d389',
+                        darkBg: '#0b0a09',
+                        darkCard: '#151311',
+                        darkCardMuted: 'rgba(23, 20, 17, 0.72)'
+                    },
+                    fontFamily: {
+                        sans: ['Montserrat', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { 
+            color: #f7f4ef; 
+            background-color: #0b0a09; 
+        }
+        html { scroll-behavior: smooth; }
+        
+        /* Золотистое сияние */
+        .text-glow-gold { 
+            text-shadow: 0 0 25px rgba(229, 169, 60, 0.75), 0 0 10px rgba(246, 211, 137, 0.9); 
+        }
+        .gold-shadow { 
+            box-shadow: 0 4px 35px rgba(229, 169, 60, 0.3); 
+        }
+        
+        /* Стеклянные премиум-карточки */
+        .glass-card { 
+            background: rgba(22, 19, 16, 0.75); 
+            backdrop-filter: blur(14px); 
+            border: 1px solid rgba(229, 169, 60, 0.18); 
+        }
+        .glass-card-subtle {
+            background: rgba(16, 14, 12, 0.65);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.07);
+        }
+        
+        /* Стили стрелок Swiper */
+        .swiper-button-next, .swiper-button-prev {
+            color: #e5a93c !important;
+            background: rgba(26, 22, 18, 0.85);
+            width: 42px !important;
+            height: 42px !important;
+            border-radius: 50%;
+            border: 1px solid rgba(229, 169, 60, 0.3);
+            transition: all 0.3s ease;
+        }
+        .swiper-button-next:hover, .swiper-button-prev:hover {
+            background: #e5a93c;
+            color: #0b0a09 !important;
+            box-shadow: 0 0 15px rgba(229, 169, 60, 0.6);
+        }
+        .swiper-button-next:after, .swiper-button-prev:after { 
+            font-size: 16px !important; 
+            font-weight: bold; 
+        }
+        @media (max-width: 768px) { 
+            .swiper-button-next, .swiper-button-prev { display: none !important; } 
+        }
+        
+        /* Скроллбар */
+        .hide-scroll::-webkit-scrollbar { display: none; }
+        .hide-scroll { -ms-overflow-style: none; scrollbar-width: none; }
+
+        /* Валидация формы */
+        .input-error { 
+            border-color: #ef4444 !important; 
+            background-color: rgba(239, 68, 68, 0.08) !important; 
+        }
+        .error-message { 
+            display: none; 
+            color: #ef4444; 
+            font-size: 0.7rem; 
+            margin-top: 4px; 
+            text-transform: uppercase; 
+            letter-spacing: 0.05em; 
+        }
+        .input-error + .error-message { display: block; }
+    </style>
+
+    <!-- МЕТА-ПИКСЕЛЬ (При необходимости замените ID) -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '2118340622444832');
+    fbq('track', 'PageView');
+    </script>
+</head>
+<body class="font-sans antialiased selection:bg-goldAccent selection:text-black pb-20 md:pb-0 relative overflow-x-hidden"> 
+
+    <!-- ФОНОВЫЕ СВЕТОВЫЕ ЭФФЕКТЫ -->
+    <div class="fixed inset-0 w-full h-full bg-[#0b0a09] z-[-3]"></div>
+    <div class="fixed top-[-10%] left-1/2 -translate-x-1/2 w-[700px] h-[700px] bg-goldAccent/10 rounded-full blur-[160px] pointer-events-none z-[-2]"></div>
+    <div class="fixed bottom-[-10%] right-[-5%] w-[500px] h-[500px] bg-[#d49432]/10 rounded-full blur-[150px] pointer-events-none z-[-2]"></div>
+
+    <!-- ФИКСИРОВАННАЯ КНОПКА ДЛЯ МОБИЛЬНЫХ -->
+    <div class="fixed bottom-0 left-0 w-full z-50 p-3 bg-black/85 backdrop-blur-md border-t border-goldAccent/30 md:hidden">
+        <button class="open-modal-btn block w-full bg-gradient-to-r from-goldAccent to-[#d49432] text-black font-extrabold text-sm py-3 text-center rounded-xl uppercase tracking-wider shadow-[0_0_20px_rgba(229,169,60,0.4)] transition transform active:scale-95">
+            ХОЧУ НА КУРС
+        </button>
+    </div>
+
+    <!-- БЛОК 1: ГЕРОЙ-ЭКРАН -->
+    <header class="relative min-h-[92vh] flex flex-col justify-between pt-8 pb-12 px-4 z-10 border-b border-goldAccent/15">
+        <div class="relative z-10 w-full max-w-5xl mx-auto text-center my-auto pt-6 flex flex-col items-center">
+            
+            <div class="inline-flex items-center gap-2 border border-goldAccent/40 bg-goldAccent/10 px-4 py-1.5 rounded-full text-goldLight text-[11px] md:text-xs font-semibold tracking-widest uppercase mb-6 backdrop-blur-md">
+                <span class="w-2 h-2 rounded-full bg-goldAccent animate-pulse"></span> 5-дневный трансформационный мини-курс
+            </div>
+
+            <h1 class="text-3xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-4 uppercase text-glow-gold tracking-wide text-white">
+                Архитектор своей реальности
+            </h1>
+            
+            <p class="text-lg md:text-2xl text-goldLight font-medium max-w-3xl mb-4 tracking-wide">
+                Как стать создателем своей реальности за 5 шагов
+            </p>
+            
+            <div class="text-sm md:text-base text-gray-300 mb-8 font-light max-w-2xl mx-auto leading-relaxed space-y-2">
+                <p>5 уроков, чтобы почувствовать вдохновение, подъём и желание жить и творить.</p>
+                <p class="text-xs md:text-sm text-goldAccent/90 font-medium tracking-wide">
+                    · практики внутри · конспекты и разбор алгоритма подсознания ·
+                </p>
+            </div>
+            
+            <!-- Карточка тарифа/таймера -->
+            <div class="glass-card p-6 rounded-2xl max-w-[320px] md:max-w-sm w-full mx-auto shadow-2xl flex flex-col items-center border border-goldAccent/30">
+                <div class="text-xs uppercase tracking-widest text-gray-400 mb-1">Спеццена первого потока</div>
+                <div class="flex items-baseline gap-3 mb-1">
+                    <span class="text-goldAccent text-4xl md:text-5xl font-extrabold drop-shadow-[0_0_15px_rgba(229,169,60,0.5)]">
+                        29 €
+                    </span>
+                    <span class="text-gray-500 text-lg md:text-xl line-through">100 €</span>
+                </div>
+                
+                <div class="text-[10px] text-gray-300 uppercase tracking-widest mb-2 mt-2 font-medium">
+                    До повышения стоимости:
+                </div>
+                <div class="flex justify-center gap-3 text-xl font-bold mb-4 text-white" id="timer">
+                    <div class="flex flex-col items-center bg-black/40 px-3 py-1.5 rounded-lg border border-goldAccent/20">
+                        <span id="mins" class="text-goldLight">15</span>
+                        <span class="text-[8px] text-gray-400 font-normal uppercase">Мин</span>
+                    </div>
+                    <div class="pt-1 text-goldAccent">:</div>
+                    <div class="flex flex-col items-center bg-black/40 px-3 py-1.5 rounded-lg border border-goldAccent/20">
+                        <span id="secs" class="text-goldLight">00</span>
+                        <span class="text-[8px] text-gray-400 font-normal uppercase">Сек</span>
+                    </div>
+                </div>
+                
+                <button class="open-modal-btn block w-full bg-gradient-to-r from-goldAccent to-[#d49432] hover:brightness-110 text-black font-extrabold text-xs md:text-sm py-3.5 px-4 rounded-xl uppercase tracking-wider transition transform hover:scale-105 shadow-[0_0_20px_rgba(229,169,60,0.4)]">
+                    ХОЧУ НА КУРС
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- БЛОК 2: ДВЕ ДОРОГИ (Фоновая картинка и сравнение путей) -->
+    <section class="py-24 px-4 relative z-10 border-b border-goldAccent/20 overflow-hidden" 
+             style="background: linear-gradient(180deg, rgba(11,10,9,0.92) 0%, rgba(18,15,12,0.95) 50%, rgba(11,10,9,0.96) 100%), url('roads-bg.jpg') center/cover no-repeat;">
+        
+        <div class="max-w-5xl mx-auto relative z-10">
+            
+            <div class="text-center mb-16">
+                <!-- Значок солнца / ориентира вверху -->
+                <div class="w-12 h-12 mx-auto mb-4 rounded-full bg-goldAccent/20 border border-goldAccent/40 flex items-center justify-center text-goldLight shadow-[0_0_20px_rgba(229,169,60,0.4)]">
+                    ✦
+                </div>
+                <h2 class="text-3xl md:text-5xl font-extrabold text-white uppercase tracking-wider mb-3">
+                    Две дороги. <span class="text-goldAccent text-glow-gold">Выбираешь ты</span>
+                </h2>
+                <p class="text-gray-300 max-w-xl mx-auto text-sm md:text-base font-light italic">
+                    Каждый день мы выбираем, как будет выглядеть наша жизнь. Вот две возможные дороги:
+                </p>
+            </div>
+
+            <!-- Сетка дорог -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+                
+                <!-- Левая ветка: Всё остаётся как есть -->
+                <div class="glass-card-subtle p-6 md:p-8 rounded-3xl border border-white/10 flex flex-col justify-between relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full blur-2xl"></div>
+                    <div>
+                        <div class="text-xs uppercase tracking-widest text-gray-500 font-semibold mb-2">Первый путь</div>
+                        <h3 class="text-2xl font-bold text-gray-300 mb-6">Всё остаётся как есть</h3>
+                        
+                        <div class="space-y-4">
+                            <div class="bg-black/40 border border-white/5 p-4 rounded-xl flex items-start gap-3">
+                                <span class="w-2 h-2 rounded-full bg-gray-500 mt-2 shrink-0"></span>
+                                <p class="text-sm text-gray-300">Всё идёт по привычному кругу</p>
+                            </div>
+                            <div class="bg-black/40 border border-white/5 p-4 rounded-xl flex items-start gap-3">
+                                <span class="w-2 h-2 rounded-full bg-gray-500 mt-2 shrink-0"></span>
+                                <p class="text-sm text-gray-300">Желания остаются желаниями, а до реальных шагов пока не доходит</p>
+                            </div>
+                            <div class="bg-black/40 border border-white/5 p-4 rounded-xl flex items-start gap-3">
+                                <span class="w-2 h-2 rounded-full bg-gray-500 mt-2 shrink-0"></span>
+                                <p class="text-sm text-gray-300">Те же ситуации в работе, деньгах и отношениях приходят снова</p>
+                            </div>
+                            <div class="bg-black/40 border border-white/5 p-4 rounded-xl flex items-start gap-3">
+                                <span class="w-2 h-2 rounded-full bg-gray-500 mt-2 shrink-0"></span>
+                                <p class="text-sm text-gray-300">Ощущение, что жизнь происходит с тобой, а не по твоему замыслу</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Правая ветка: Ты строишь свою реальность -->
+                <div class="glass-card p-6 md:p-8 rounded-3xl border-2 border-goldAccent/60 gold-shadow flex flex-col justify-between relative overflow-hidden bg-gradient-to-b from-[#1b1712]/90 to-[#120f0d]/95">
+                    <div class="absolute top-0 right-0 w-36 h-36 bg-goldAccent/15 rounded-full blur-3xl"></div>
+                    <div>
+                        <div class="text-xs uppercase tracking-widest text-goldAccent font-semibold mb-2">Твой осознанный выбор</div>
+                        <h3 class="text-2xl font-bold text-goldLight mb-6 text-glow-gold">Ты строишь свою реальность</h3>
+                        
+                        <div class="space-y-4">
+                            <div class="bg-black/60 border border-goldAccent/30 p-4 rounded-xl flex items-start gap-3 shadow-[0_0_15px_rgba(229,169,60,0.08)]">
+                                <span class="w-2.5 h-2.5 rounded-full bg-goldAccent mt-1.5 shrink-0 shadow-[0_0_8px_rgba(229,169,60,0.8)]"></span>
+                                <p class="text-sm text-gray-100">Ты понимаешь, как устроена твоя жизнь и откуда берутся события</p>
+                            </div>
+                            <div class="bg-black/60 border border-goldAccent/30 p-4 rounded-xl flex items-start gap-3 shadow-[0_0_15px_rgba(229,169,60,0.08)]">
+                                <span class="w-2.5 h-2.5 rounded-full bg-goldAccent mt-1.5 shrink-0 shadow-[0_0_8px_rgba(229,169,60,0.8)]"></span>
+                                <p class="text-sm text-gray-100">Видишь, что тебя держало, и знаешь, как это менять</p>
+                            </div>
+                            <div class="bg-black/60 border border-goldAccent/30 p-4 rounded-xl flex items-start gap-3 shadow-[0_0_15px_rgba(229,169,60,0.08)]">
+                                <span class="w-2.5 h-2.5 rounded-full bg-goldAccent mt-1.5 shrink-0 shadow-[0_0_8px_rgba(229,169,60,0.8)]"></span>
+                                <p class="text-sm text-gray-100">Появляется вдохновение, подъём и желание жить и творить</p>
+                            </div>
+                            <div class="bg-black/60 border border-goldAccent/30 p-4 rounded-xl flex items-start gap-3 shadow-[0_0_15px_rgba(229,169,60,0.08)]">
+                                <span class="w-2.5 h-2.5 rounded-full bg-goldAccent mt-1.5 shrink-0 shadow-[0_0_8px_rgba(229,169,60,0.8)]"></span>
+                                <p class="text-sm text-gray-100">Ты чувствуешь, что руль в твоих руках, и двигаешься к жизни, которую хочешь</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Итог блока -->
+            <div class="text-center max-w-2xl mx-auto space-y-6">
+                <p class="text-sm md:text-base text-gray-300 font-light leading-relaxed">
+                    Ни одна из дорог не «правильная» или «неправильная».<br>
+                    <span class="text-white font-semibold">Но только на одной из них ты сам выбираешь, куда идти.</span>
+                </p>
+                <div>
+                    <button class="open-modal-btn inline-block bg-gradient-to-r from-goldAccent to-[#d49432] text-black font-extrabold py-4 px-10 rounded-xl uppercase tracking-wider transition transform hover:scale-105 shadow-[0_0_25px_rgba(229,169,60,0.45)]">
+                        ХОЧУ ВЫБРАТЬ ЭТУ ДОРОГУ
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- БЛОК 3: ЧТО ИЗМЕНИТСЯ, КОГДА ТЫ НАЧНЁШЬ СТРОИТЬ СВОЮ РЕАЛЬНОСТЬ -->
+    <section class="py-24 px-4 relative z-10 border-b border-goldAccent/15 bg-black/40">
+        <div class="max-w-5xl mx-auto">
+            
+            <div class="text-center mb-16">
+                <div class="text-xs uppercase tracking-widest text-goldAccent font-semibold mb-2">Трансформация</div>
+                <h2 class="text-2xl md:text-4xl lg:text-5xl font-extrabold text-white uppercase tracking-wider mb-4">
+                    Что изменится, когда ты начнёшь <br class="hidden md:block">
+                    <span class="text-goldAccent text-glow-gold">строить свою реальность</span>
+                </h2>
+                <p class="text-sm md:text-base text-gray-300 max-w-2xl mx-auto font-light">
+                    Это не про «стать другим человеком». Это про то, как ты начинаешь чувствовать и проживать свою жизнь.
+                </p>
+            </div>
+
+            <!-- 6 Карточек в теплом визуале -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-14">
+                
+                <div class="glass-card p-6 rounded-2xl border border-goldAccent/25 hover:border-goldAccent/60 transition duration-300 relative group flex flex-col justify-between">
+                    <div>
+                        <div class="w-10 h-10 rounded-lg bg-goldAccent/15 border border-goldAccent/30 flex items-center justify-center text-goldAccent font-bold text-sm mb-4">
+                            01
+                        </div>
+                        <h4 class="text-white font-bold text-lg mb-2 leading-snug">Ты почувствуешь, что руль в твоих руках</h4>
+                        <p class="text-gray-300 font-light text-sm leading-relaxed">
+                            Вместо ощущения «со мной что-то происходит» приходит ясность: ты понимаешь, как формируется твоя реальность, и видишь, где можешь на неё влиять.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="glass-card p-6 rounded-2xl border border-goldAccent/25 hover:border-goldAccent/60 transition duration-300 relative group flex flex-col justify-between">
+                    <div>
+                        <div class="w-10 h-10 rounded-lg bg-goldAccent/15 border border-goldAccent/30 flex items-center justify-center text-goldAccent font-bold text-sm mb-4">
+                            02
+                        </div>
+                        <h4 class="text-white font-bold text-lg mb-2 leading-snug">Ты начнёшь видеть связи</h4>
+                        <p class="text-gray-300 font-light text-sm leading-relaxed">
+                            Замечаешь, как твои мысли, чувства и отношение к себе отражаются на работе, деньгах и отношениях. То, что раньше казалось случайностью, становится понятным.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="glass-card p-6 rounded-2xl border border-goldAccent/25 hover:border-goldAccent/60 transition duration-300 relative group flex flex-col justify-between">
+                    <div>
+                        <div class="w-10 h-10 rounded-lg bg-goldAccent/15 border border-goldAccent/30 flex items-center justify-center text-goldAccent font-bold text-sm mb-4">
+                            03
+                        </div>
+                        <h4 class="text-white font-bold text-lg mb-2 leading-snug">Увидишь, где ты сейчас и куда хочешь</h4>
+                        <p class="text-gray-300 font-light text-sm leading-relaxed">
+                            Появляется точка А и точка Б. И чёткое понимание того, что конкретно мешало двигаться между ними все эти годы.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="glass-card p-6 rounded-2xl border border-goldAccent/25 hover:border-goldAccent/60 transition duration-300 relative group flex flex-col justify-between">
+                    <div>
+                        <div class="w-10 h-10 rounded-lg bg-goldAccent/15 border border-goldAccent/30 flex items-center justify-center text-goldAccent font-bold text-sm mb-4">
+                            04
+                        </div>
+                        <h4 class="text-white font-bold text-lg mb-2 leading-snug">Выйдешь из повторяющихся сюжетов</h4>
+                        <p class="text-gray-300 font-light text-sm leading-relaxed">
+                            Видишь сценарии, которые приходили снова и снова в финансах, работе или партнерстве, и понимаешь, как экологично из них выходить.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="glass-card p-6 rounded-2xl border border-goldAccent/25 hover:border-goldAccent/60 transition duration-300 relative group flex flex-col justify-between">
+                    <div>
+                        <div class="w-10 h-10 rounded-lg bg-goldAccent/15 border border-goldAccent/30 flex items-center justify-center text-goldAccent font-bold text-sm mb-4">
+                            05
+                        </div>
+                        <h4 class="text-white font-bold text-lg mb-2 leading-snug">Станешь честнее с собой, и станет легче</h4>
+                        <p class="text-gray-300 font-light text-sm leading-relaxed">
+                            Когда перестаёшь приукрашивать и прибеднять даже в мелочах, в жизни проявляется то, что раньше постоянно проходило мимо.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="glass-card p-6 rounded-2xl border border-goldAccent/25 hover:border-goldAccent/60 transition duration-300 relative group flex flex-col justify-between">
+                    <div>
+                        <div class="w-10 h-10 rounded-lg bg-goldAccent/15 border border-goldAccent/30 flex items-center justify-center text-goldAccent font-bold text-sm mb-4">
+                            06
+                        </div>
+                        <h4 class="text-white font-bold text-lg mb-2 leading-snug">Вернутся вдохновение и лёгкость</h4>
+                        <p class="text-gray-300 font-light text-sm leading-relaxed">
+                            Появляется внутренний подъём, живой интерес к каждому дню и естественное желание творить и действовать без самосаботажа.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Итоговая строка -->
+            <div class="text-center max-w-2xl mx-auto p-6 rounded-2xl bg-goldAccent/10 border border-goldAccent/30 mb-8">
+                <p class="text-lg md:text-xl font-semibold text-goldLight tracking-wide">
+                    Ты просто начинаешь жить как архитектор, который сам выбирает, что строить.
+                </p>
+            </div>
+
+            <div class="text-center">
+                <button class="open-modal-btn inline-block bg-gradient-to-r from-goldAccent to-[#d49432] text-black font-extrabold py-4 px-10 rounded-xl uppercase tracking-wider transition transform hover:scale-105 shadow-[0_0_20px_rgba(229,169,60,0.4)]">
+                    ПРИСОЕДИНИТЬСЯ К КУРСУ
+                </button>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- БЛОК 4: АВТОР КУРСА -->
+    <section class="py-24 px-4 max-w-5xl mx-auto relative z-10 border-b border-goldAccent/15">
+        <div class="flex flex-col md:flex-row items-center gap-10">
+            
+            <div class="w-full md:w-[45%]">
+                <div class="relative group">
+                    <div class="absolute -inset-1 bg-gradient-to-r from-goldAccent to-[#b87d20] rounded-3xl blur-md opacity-40 group-hover:opacity-75 transition duration-500"></div>
+                    <img src="author.jpg" alt="Надежда — Автор курса" class="relative w-full aspect-square md:aspect-[4/5] object-cover rounded-3xl border border-goldAccent/40 shadow-2xl">
+                </div>
+            </div>
+            
+            <div class="w-full md:w-[55%] glass-card p-6 md:p-8 rounded-3xl border border-goldAccent/25">
+                <div class="inline-block text-goldAccent border border-goldAccent/40 bg-goldAccent/10 px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-4">
+                    Автор курса
+                </div>
+                
+                <h3 class="text-2xl md:text-3xl font-bold text-white mb-2">Надежда</h3>
+                <p class="text-goldLight font-medium text-base md:text-lg mb-6 italic">
+                    «Я прошла этот путь сама. Я сама свой главный кейс.»
+                </p>
+                
+                <div class="space-y-4 text-gray-300 font-light text-sm md:text-base leading-relaxed">
+                    <p>Привет, я Надежда. Я не просто рассказываю, как строить свою реальность. Я прошла этот путь изнутри.</p>
+                    
+                    <p>Раньше я жила совсем по-другому: чувствовала постоянную нехватку ресурса, хождение по замкнутому кругу и непонимание, почему при всех усилиях жизнь не становится такой, как хочется в глубине души.</p>
+                    
+                    <p>Потом я поняла, как на самом деле устроена наша реальность: как наши скрытые алгоритмы подсознания и вытесненные чувства день за днем формируют материальные события.</p>
+                    
+                    <p>Сегодня моя жизнь выглядит совершенно иначе — это спокойная опора на себя, глубокие доверительные отношения, ясность в делах и свобода создавать свой день из радости и созидания.</p>
+                    
+                    <p class="text-white font-medium">
+                        Я не искала лёгкого пути. Я просто начала строить свою жизнь сама, шаг за шагом. Всё, что я даю на этом курсе, я сначала проверила на себе.
+                    </p>
+                </div>
+                
+                <!-- Факты доверия -->
+                <div class="grid grid-cols-2 gap-3 mt-6 pt-6 border-t border-goldAccent/20">
+                    <div class="bg-black/40 p-3 rounded-xl border border-goldAccent/20 text-center">
+                        <div class="text-goldAccent font-extrabold text-xl md:text-2xl">100%</div>
+                        <div class="text-[11px] text-gray-300 uppercase tracking-wider mt-0.5">Практический опыт</div>
+                    </div>
+                    <div class="bg-black/40 p-3 rounded-xl border border-goldAccent/20 text-center">
+                        <div class="text-goldAccent font-extrabold text-xl md:text-2xl">5 шагов</div>
+                        <div class="text-[11px] text-gray-300 uppercase tracking-wider mt-0.5">Четкая методология</div>
+                    </div>
+                </div>
+
+                <div class="mt-6">
+                    <p class="text-goldLight font-semibold text-sm">Хочешь так же? Попробуй. Я покажу, как это сделала я.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- БЛОК 5: ПРОГРАММА КУРСА (5 ДНЕЙ) -->
+    <section class="py-24 px-4 relative z-10 border-b border-goldAccent/15 bg-black/40">
+        <div class="max-w-4xl mx-auto">
+            
+            <div class="text-center mb-16">
+                <div class="text-xs uppercase tracking-widest text-goldAccent font-semibold mb-2">Пошаговый маршрут</div>
+                <h2 class="text-3xl md:text-5xl font-extrabold text-white tracking-wider uppercase mb-4">
+                    Программа <span class="text-goldAccent text-glow-gold">курса</span>
+                </h2>
+                <p class="text-gray-300 text-sm md:text-base font-light max-w-2xl mx-auto leading-relaxed">
+                    Пять дней, пять уроков. В каждом ты делаешь осознанный шаг от точки А, где ты сейчас, к точке Б, где хочешь быть.
+                </p>
+            </div>
+            
+            <div class="flex flex-col gap-6 text-left mb-16">
+                
+                <!-- День 1 -->
+                <div class="glass-card p-6 md:p-8 rounded-2xl flex flex-col md:flex-row gap-6 items-start hover:border-goldAccent/60 transition duration-300 relative group">
+                    <div class="shrink-0 flex items-center justify-center w-16 h-16 md:w-20 md:h-20 rounded-2xl border border-goldAccent/40 bg-goldAccent/10 text-goldAccent font-extrabold text-lg md:text-xl shadow-[0_0_15px_rgba(229,169,60,0.2)]">
+                        ДЕНЬ 1
+                    </div>
+                    <div>
+                        <h4 class="text-white font-bold text-xl mb-2 tracking-wide text-glow-gold">
+                            Как формируется реальность
+                        </h4>
+                        <p class="text-gray-300 font-light text-sm md:text-base leading-relaxed mb-3">
+                            Главный принцип курса: ты сам формируешь свою реальность своими мыслями, чувствами и тем, что хранится внутри. Разбираем, как вытесненные части участвуют в событиях, почему важно замечать свои эмоции и как перейти от ощущения «минного поля» к позиции игрока, который влияет на ход игры.
+                        </p>
+                        <div class="inline-flex items-center gap-2 text-xs font-semibold text-goldLight bg-black/40 px-3 py-1 rounded-lg border border-goldAccent/30">
+                            <span>🎧</span> Практика в наушниках: ты берёшь ответственность за жизнь в свои руки
+                        </div>
+                    </div>
+                </div>
+
+                <!-- День 2 -->
+                <div class="glass-card p-6 md:p-8 rounded-2xl flex flex-col md:flex-row gap-6 items-start hover:border-goldAccent/60 transition duration-300 relative group">
+                    <div class="shrink-0 flex items-center justify-center w-16 h-16 md:w-20 md:h-20 rounded-2xl border border-goldAccent/40 bg-goldAccent/10 text-goldAccent font-extrabold text-lg md:text-xl shadow-[0_0_15px_rgba(229,169,60,0.2)]">
+                        ДЕНЬ 2
+                    </div>
+                    <div>
+                        <h4 class="text-white font-bold text-xl mb-2 tracking-wide text-glow-gold">
+                            Внутренняя реальность подсознания
+                        </h4>
+                        <p class="text-gray-300 font-light text-sm md:text-base leading-relaxed mb-3">
+                            То, что заложено внутри тебя: как ты себя ощущаешь и чего считаешь себя достойным. Эта внутренняя картинка напрямую отражается на работе, клиентах, теле и отношениях, и от неё зависит, какие люди и события приходят в твою жизнь.
+                        </p>
+                        <div class="inline-flex items-center gap-2 text-xs font-semibold text-goldLight bg-black/40 px-3 py-1 rounded-lg border border-goldAccent/30">
+                            <span>🔍</span> Результат: видим свою истинную точку А и то, что удерживает на месте
+                        </div>
+                    </div>
+                </div>
+
+                <!-- День 3 -->
+                <div class="glass-card p-6 md:p-8 rounded-2xl flex flex-col md:flex-row gap-6 items-start hover:border-goldAccent/60 transition duration-300 relative group">
+                    <div class="shrink-0 flex items-center justify-center w-16 h-16 md:w-20 md:h-20 rounded-2xl border border-goldAccent/40 bg-goldAccent/10 text-goldAccent font-extrabold text-lg md:text-xl shadow-[0_0_15px_rgba(229,169,60,0.2)]">
+                        ДЕНЬ 3
+                    </div>
+                    <div>
+                        <h4 class="text-white font-bold text-xl mb-2 tracking-wide text-glow-gold">
+                            Внешняя реальность подсознания
+                        </h4>
+                        <p class="text-gray-300 font-light text-sm md:text-base leading-relaxed mb-3">
+                            То, что отвечает за движение вовне: бизнес, масштаб, видение будущего, проявленность. Видим свою точку Б, почему ты одновременно хочешь перемен и сопротивляешься им, и как соединить внутреннее и внешнее, чтобы двигаться к желаемому с ощущением целостности.
+                        </p>
+                        <div class="inline-flex items-center gap-2 text-xs font-semibold text-goldLight bg-black/40 px-3 py-1 rounded-lg border border-goldAccent/30">
+                            <span>🚀</span> Результат: синхронизация желаний и действий без выгорания
+                        </div>
+                    </div>
+                </div>
+
+                <!-- День 4 -->
+                <div class="glass-card p-6 md:p-8 rounded-2xl flex flex-col md:flex-row gap-6 items-start hover:border-goldAccent/60 transition duration-300 relative group">
+                    <div class="shrink-0 flex items-center justify-center w-16 h-16 md:w-20 md:h-20 rounded-2xl border border-goldAccent/40 bg-goldAccent/10 text-goldAccent font-extrabold text-lg md:text-xl shadow-[0_0_15px_rgba(229,169,60,0.2)]">
+                        ДЕНЬ 4
+                    </div>
+                    <div>
+                        <h4 class="text-white font-bold text-xl mb-2 tracking-wide text-glow-gold">
+                            Повторы, контракты родовой системы и божественная иерархия
+                        </h4>
+                        <p class="text-gray-300 font-light text-sm md:text-base leading-relaxed mb-3">
+                            Практический день. Находим сценарии, которые повторяются в твоей жизни и пришли из семьи. Разбираем «контракт» с родовой системой: убеждения, с которыми человек соглашается при рождении (например, «деньги — это зло»), и как их менять. Знакомимся с законом иерархии: почему его нарушение блокирует результат и как строить успех без потерь в здоровье, деньгах и отношениях.
+                        </p>
+                        <div class="inline-flex items-center gap-2 text-xs font-semibold text-goldLight bg-black/40 px-3 py-1 rounded-lg border border-goldAccent/30">
+                            <span>🛡</span> Результат: разрыв деструктивных циклов и возврат сил
+                        </div>
+                    </div>
+                </div>
+
+                <!-- День 5 -->
+                <div class="glass-card p-6 md:p-8 rounded-2xl flex flex-col md:flex-row gap-6 items-start hover:border-goldAccent/60 transition duration-300 relative group">
+                    <div class="shrink-0 flex items-center justify-center w-16 h-16 md:w-20 md:h-20 rounded-2xl border border-goldAccent/40 bg-goldAccent/10 text-goldAccent font-extrabold text-lg md:text-xl shadow-[0_0_15px_rgba(229,169,60,0.2)]">
+                        ДЕНЬ 5
+                    </div>
+                    <div>
+                        <h4 class="text-white font-bold text-xl mb-2 tracking-wide text-glow-gold">
+                            Переход на новый уровень
+                        </h4>
+                        <p class="text-gray-300 font-light text-sm md:text-base leading-relaxed mb-3">
+                            Финальный день. Закрепляем изменения и фиксируем новое состояние: экологично отпускаем старое и входим в новое, в котором хочется жить, выбирать и творить. Смотрим, что делать дальше и как мягко интегрировать эти инструменты в реальную повседневную жизнь.
+                        </p>
+                        <div class="inline-flex items-center gap-2 text-xs font-semibold text-goldLight bg-black/40 px-3 py-1 rounded-lg border border-goldAccent/30">
+                            <span>✨</span> Результат: чёткий алгоритм действий архитектора своей жизни
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            
+            <div class="text-center">
+                <button class="open-modal-btn inline-block w-full md:w-auto bg-gradient-to-r from-goldAccent to-[#d49432] text-black font-extrabold py-4 px-12 rounded-xl uppercase tracking-wider transition transform hover:scale-105 shadow-[0_0_25px_rgba(229,169,60,0.45)]">
+                    ЗАБРОНИРОВАТЬ МЕСТО НА КУРСЕ
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- БЛОК 6: ОТЗЫВЫ КЛИЕНТОВ -->
+    <section class="py-24 px-4 overflow-hidden border-b border-goldAccent/15 relative z-10 bg-black/50">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-12">
+                <div class="text-xs uppercase tracking-widest text-goldAccent font-semibold mb-2">Результаты</div>
+                <h2 class="text-2xl md:text-4xl font-extrabold uppercase text-white">
+                    Что говорят мои клиенты <br class="md:hidden">
+                    <span class="text-goldAccent text-glow-gold">о работе со мной</span>
+                </h2>
+            </div>
+            
+            <div class="relative px-2 md:px-12">
+                <div class="swiper reviewsSwiper">
+                    <div class="swiper-wrapper">
+                        
+                        <div class="swiper-slide flex justify-center">
+                            <div class="w-[280px] h-[400px] md:w-[320px] md:h-[450px] glass-card rounded-2xl flex items-center justify-center p-2 shadow-lg transition-transform hover:scale-[1.02] border border-goldAccent/30">
+                                <img src="v1.jpg" alt="Отзыв 1" class="max-w-full max-h-full object-contain cursor-pointer review-img rounded-xl">
+                            </div>
+                        </div>
+
+                        <div class="swiper-slide flex justify-center">
+                            <div class="w-[280px] h-[400px] md:w-[320px] md:h-[450px] glass-card rounded-2xl flex items-center justify-center p-2 shadow-lg transition-transform hover:scale-[1.02] border border-goldAccent/30">
+                                <img src="v2.jpg" alt="Отзыв 2" class="max-w-full max-h-full object-contain cursor-pointer review-img rounded-xl">
+                            </div>
+                        </div>
+
+                        <div class="swiper-slide flex justify-center">
+                            <div class="w-[280px] h-[400px] md:w-[320px] md:h-[450px] glass-card rounded-2xl flex items-center justify-center p-2 shadow-lg transition-transform hover:scale-[1.02] border border-goldAccent/30">
+                                <img src="v3.jpg" alt="Отзыв 3" class="max-w-full max-h-full object-contain cursor-pointer review-img rounded-xl">
+                            </div>
+                        </div>
+
+                        <div class="swiper-slide flex justify-center">
+                            <div class="w-[280px] h-[400px] md:w-[320px] md:h-[450px] glass-card rounded-2xl flex items-center justify-center p-2 shadow-lg transition-transform hover:scale-[1.02] border border-goldAccent/30">
+                                <img src="v4.jpg" alt="Отзыв 4" class="max-w-full max-h-full object-contain cursor-pointer review-img rounded-xl">
+                            </div>
+                        </div>
+
+                        <div class="swiper-slide flex justify-center">
+                            <div class="w-[280px] h-[400px] md:w-[320px] md:h-[450px] glass-card rounded-2xl flex items-center justify-center p-2 shadow-lg transition-transform hover:scale-[1.02] border border-goldAccent/30">
+                                <img src="v5.jpg" alt="Отзыв 5" class="max-w-full max-h-full object-contain cursor-pointer review-img rounded-xl">
+                            </div>
+                        </div>
+
+                        <div class="swiper-slide flex justify-center">
+                            <div class="w-[280px] h-[400px] md:w-[320px] md:h-[450px] glass-card rounded-2xl flex items-center justify-center p-2 shadow-lg transition-transform hover:scale-[1.02] border border-goldAccent/30">
+                                <img src="v6.jpg" alt="Отзыв 6" class="max-w-full max-h-full object-contain cursor-pointer review-img rounded-xl">
+                            </div>
+                        </div>
+
+                        <div class="swiper-slide flex justify-center">
+                            <div class="w-[280px] h-[400px] md:w-[320px] md:h-[450px] glass-card rounded-2xl flex items-center justify-center p-2 shadow-lg transition-transform hover:scale-[1.02] border border-goldAccent/30">
+                                <img src="v7.jpg" alt="Отзыв 7" class="max-w-full max-h-full object-contain cursor-pointer review-img rounded-xl">
+                            </div>
+                        </div>
+
+                        <div class="swiper-slide flex justify-center">
+                            <div class="w-[280px] h-[400px] md:w-[320px] md:h-[450px] glass-card rounded-2xl flex items-center justify-center p-2 shadow-lg transition-transform hover:scale-[1.02] border border-goldAccent/30">
+                                <img src="v8.jpg" alt="Отзыв 8" class="max-w-full max-h-full object-contain cursor-pointer review-img rounded-xl">
+                            </div>
+                        </div>
+
+                        <div class="swiper-slide flex justify-center">
+                            <div class="w-[280px] h-[400px] md:w-[320px] md:h-[450px] glass-card rounded-2xl flex items-center justify-center p-2 shadow-lg transition-transform hover:scale-[1.02] border border-goldAccent/30">
+                                <img src="v9.jpg" alt="Отзыв 9" class="max-w-full max-h-full object-contain cursor-pointer review-img rounded-xl">
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ПОДВАЛ -->
+    <footer class="py-8 text-center border-t border-goldAccent/20 text-gray-400 text-xs tracking-wider uppercase bg-[#0b0a09]/90 backdrop-blur-md relative z-10">
+        <p>© 2026 | Архитектор своей реальности. Все права защищены</p>
+    </footer>
+
+    <!-- POP-UP МОДАЛЬНОЕ ОКНО С ФОРМОЙ ЗАПИСИ И ОПЛАТЫ -->
+    <div id="order-modal" class="fixed inset-0 z-[200] bg-black/90 hidden opacity-0 transition-opacity duration-300 flex items-center justify-center p-4 backdrop-blur-md">
+        <div class="relative glass-card p-6 md:p-8 rounded-3xl w-full max-w-[480px] border border-goldAccent/50 gold-shadow transform transition-all">
+            <button id="close-modal" class="absolute top-4 right-5 text-gray-400 hover:text-goldAccent text-3xl font-light focus:outline-none transition">&times;</button>
+            
+            <h3 class="text-xl md:text-2xl font-extrabold text-center mb-1 uppercase text-white tracking-wide">
+                ЗАБРОНИРОВАТЬ МЕСТО
+            </h3>
+            <p class="text-center text-gray-300 text-xs md:text-sm mb-6 font-light">
+                Введите контактные данные для регистрации на мини-курс
+            </p>
+            
+            <form id="popupForm" class="space-y-3.5" novalidate>
+                <div>
+                    <label class="block text-[10px] md:text-xs text-gray-300 uppercase tracking-wider mb-1 whitespace-nowrap">Ваше имя</label>
+                    <input type="text" id="pop-name" placeholder="Например: Анна" class="w-full bg-black/60 border border-gray-700 focus:border-goldAccent rounded-xl px-4 py-3 text-white focus:outline-none transition">
+                    <span class="error-message" id="error-name">Минимум 3 символа</span>
+                </div>
+                
+                <div>
+                    <label class="block text-[10px] md:text-xs text-gray-300 uppercase tracking-wider mb-1 whitespace-nowrap">Номер телефона</label>
+                    <input type="tel" id="pop-phone" placeholder="+380..." class="w-full bg-black/60 border border-gray-700 focus:border-goldAccent rounded-xl px-4 py-3 text-white focus:outline-none transition">
+                    <span class="error-message" id="error-phone">Введите корректный номер телефона</span>
+                </div>
+
+                <div>
+                    <label class="block text-[10px] md:text-xs text-gray-300 uppercase tracking-wider mb-1 whitespace-nowrap">Ваш Telegram (ник или номер)</label>
+                    <input type="text" id="pop-telegram" placeholder="@username" class="w-full bg-black/60 border border-gray-700 focus:border-goldAccent rounded-xl px-4 py-3 text-white focus:outline-none transition">
+                    <span class="error-message" id="error-telegram">Минимум 3 символа</span>
+                </div>
+                
+                <div class="pt-1">
+                    <div class="flex justify-between items-center bg-black/40 border border-goldAccent/30 rounded-xl p-3.5">
+                        <span class="text-gray-300 uppercase tracking-wider text-xs font-semibold">К оплате:</span>
+                        <div class="flex items-baseline gap-2.5">
+                            <span class="text-gray-500 line-through text-sm">100 €</span>
+                            <span class="text-goldAccent font-extrabold text-2xl leading-none">29 €</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-black/40 border border-white/5 rounded-xl p-3 text-[11px] text-gray-400 leading-relaxed text-center">
+                    Доступ к учебным материалам и закрытому каналу курса открывается сразу после подтверждения оплаты.
+                </div>
+                
+                <div class="pt-1">
+                    <button type="submit" class="w-full bg-gradient-to-r from-goldAccent to-[#d49432] text-black font-extrabold py-4 rounded-xl uppercase tracking-wider transition transform active:scale-95 shadow-[0_0_20px_rgba(229,169,60,0.4)]">
+                        ПЕРЕЙТИ К ОПЛАТЕ
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- LIGHTBOX ДЛЯ ФОТО ОТЗЫВОВ -->
+    <div id="lightbox" class="fixed inset-0 z-[100] bg-black/95 hidden opacity-0 transition-opacity duration-300">
+        <button id="close-lightbox" class="absolute top-4 right-6 text-gray-400 hover:text-goldAccent text-5xl font-light z-[110] transition">&times;</button>
+        <div class="w-full h-full flex items-center justify-center p-4 overflow-auto">
+            <img id="lightbox-img" src="" class="max-w-[95vw] max-h-[90vh] object-contain cursor-zoom-out rounded-lg shadow-2xl" alt="Увеличенный отзыв">
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <script>
+        // --- 1. ТАЙМЕР ---
+        let time = 15 * 60; 
+        const minsEl = document.getElementById('mins');
+        const secsEl = document.getElementById('secs');
+
+        setInterval(() => {
+            let m = Math.floor(time / 60);
+            let s = time % 60;
+            if (minsEl && secsEl) {
+                minsEl.innerHTML = m < 10 ? '0' + m : m;
+                secsEl.innerHTML = s < 10 ? '0' + s : s;
+            }
+            if(time > 0) time--;
+        }, 1000);
+
+        // --- 2. SWIPER (Отзывы) ---
+        const swiper = new Swiper(".reviewsSwiper", {
+            loop: true,               
+            grabCursor: true,         
+            spaceBetween: 20,         
+            centeredSlides: true,     
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+            breakpoints: {
+                320: { slidesPerView: 1.2 }, 
+                640: { slidesPerView: 2 },
+                1024: { slidesPerView: 3 },
+            }
+        });
+
+        // --- 3. LIGHTBOX (Фото отзывов) ---
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const closeLightboxBtn = document.getElementById('close-lightbox');
+        const reviewImages = document.querySelectorAll('.review-img');
+
+        reviewImages.forEach(img => {
+            img.addEventListener('click', () => {
+                lightboxImg.src = img.src;
+                lightbox.classList.remove('hidden');
+                setTimeout(() => { lightbox.classList.remove('opacity-0'); }, 10);
+                document.body.style.overflow = 'hidden'; 
+            });
+        });
+
+        const closeLightboxModal = () => {
+            lightbox.classList.add('opacity-0'); 
+            setTimeout(() => {
+                lightbox.classList.add('hidden'); 
+                lightboxImg.src = '';
+                document.body.style.overflow = ''; 
+            }, 300);
+        };
+
+        closeLightboxBtn.addEventListener('click', closeLightboxModal);
+        lightbox.addEventListener('click', (e) => { 
+            if (e.target === lightbox || e.target.tagName === 'DIV') closeLightboxModal(); 
+        });
+        document.addEventListener('keydown', (e) => { 
+            if (e.key === 'Escape' && !lightbox.classList.contains('hidden')) closeLightboxModal(); 
+        });
+
+        // --- 4. POP-UP ФОРМА И ВАЛИДАЦИЯ ---
+        const orderModal = document.getElementById('order-modal');
+        const openModalBtns = document.querySelectorAll('.open-modal-btn');
+        const closeModalBtn = document.getElementById('close-modal');
+        const popupForm = document.getElementById('popupForm');
+
+        // Открытие формы
+        openModalBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                orderModal.classList.remove('hidden');
+                setTimeout(() => { orderModal.classList.remove('opacity-0'); }, 10);
+                document.body.style.overflow = 'hidden';
+            });
+        });
+
+        // Закрытие формы
+        const closeOrderModal = () => {
+            orderModal.classList.add('opacity-0');
+            setTimeout(() => { 
+                orderModal.classList.add('hidden'); 
+                document.body.style.overflow = ''; 
+            }, 300);
+        };
+
+        closeModalBtn.addEventListener('click', closeOrderModal);
+        orderModal.addEventListener('click', (e) => { 
+            if (e.target === orderModal) closeOrderModal(); 
+        });
+
+        function getUTMs() {
+            const urlParams = new URLSearchParams(window.location.search);
+            return {
+                utm_source: urlParams.get('utm_source') || '',
+                utm_medium: urlParams.get('utm_medium') || '',
+                utm_campaign: urlParams.get('utm_campaign') || ''
+            };
+        }
+
+        // Валидация и отправка
+        popupForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            let isValid = true;
+
+            const nameInput = document.getElementById('pop-name');
+            const phoneInput = document.getElementById('pop-phone');
+            const tgInput = document.getElementById('pop-telegram');
+            const submitBtn = popupForm.querySelector('button[type="submit"]');
+
+            const showError = (input) => {
+                input.classList.add('input-error');
+                isValid = false;
+            };
+            const clearError = (input) => {
+                input.classList.remove('input-error');
+            };
+
+            // Имя
+            if (nameInput.value.trim().length < 3) {
+                showError(nameInput);
+            } else { clearError(nameInput); }
+
+            // Телеграм
+            if (tgInput.value.trim().length < 3) {
+                showError(tgInput);
+            } else { clearError(tgInput); }
+
+            // Телефон
+            const phoneRegex = /^\+?[0-9\s\-()]{9,15}$/;
+            const phoneVal = phoneInput.value.trim().replace(/\s+/g, ''); 
+            if (!phoneRegex.test(phoneVal)) {
+                showError(phoneInput);
+            } else { clearError(phoneInput); }
+
+            if (isValid) {
+                submitBtn.innerText = 'ОБРАБОТКА...';
+                submitBtn.disabled = true;
+
+                // Ссылки на Webhook и Платежную систему (замените на свои актуальные)
+                const googleScriptURL = 'https://script.google.com/macros/s/AKfycbwwvrn6nNWql1vaAF6qx6kUNl5GcCGMU5z8vBaqtWgQ3ZQCXL7p6b_AP0GqC4Po_E2X8g/exec'; 
+                const paymentURL = 'https://secure.wayforpay.com/button/bce3402b76e97';
+
+                const formData = new FormData();
+                formData.append('name', nameInput.value.trim());
+                formData.append('phone', phoneInput.value.trim());
+                formData.append('telegram', tgInput.value.trim()); 
+                
+                const utms = getUTMs();
+                formData.append('utm_source', utms.utm_source);
+                formData.append('utm_medium', utms.utm_medium);
+                formData.append('utm_campaign', utms.utm_campaign);
+
+                fetch(googleScriptURL, { 
+                    method: 'POST', 
+                    body: formData,
+                    mode: 'no-cors' 
+                }).then(() => {
+                    window.location.href = paymentURL;
+                }).catch(e => {
+                    console.error(e);
+                    window.location.href = paymentURL;
+                });
+
+                if(typeof fbq !== 'undefined') {
+                    fbq('track', 'InitiateCheckout', { value: 29.00, currency: 'EUR' });
+                }
+            }
+        });
+
+        // Снятие ошибок при вводе
+        [document.getElementById('pop-name'), document.getElementById('pop-phone'), document.getElementById('pop-telegram')].forEach(input => {
+            input.addEventListener('input', () => {
+                input.classList.remove('input-error');
+            });
+        });
+    </script>
+</body>
+</html>
