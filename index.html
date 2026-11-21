@@ -120,9 +120,9 @@
         </button>
     </div>
 
-    <!-- БЛОК 1: ГЕРОЙ-ЭКРАН С ФОТОГРАФИЕЙ НАДЕЖДЫ (N.JNG) -->
+    <!-- БЛОК 1: ГЕРОЙ-ЭКРАН С ФОТОГРАФИЕЙ НАДЕЖДЫ (N.JPG) -->
     <header class="relative min-h-[95vh] flex flex-col justify-between pt-8 pb-12 px-4 z-10 border-b border-goldAccent/15 overflow-hidden"
-            style="background-image: url('n.jng'); background-size: cover; background-position: center top;">
+            style="background-image: url('n.jpg'); background-size: cover; background-position: center top;">
         
         <!-- Затемнение для читаемости текста поверх фото -->
         <div class="absolute inset-0 bg-gradient-to-b from-[#0b0a09]/45 via-[#0b0a09]/75 to-[#0b0a09] z-0 pointer-events-none"></div>
@@ -691,71 +691,3 @@
             let isValid = true;
 
             const nameInput = document.getElementById('pop-name');
-            const phoneInput = document.getElementById('pop-phone');
-            const tgInput = document.getElementById('pop-telegram');
-            const submitBtn = popupForm.querySelector('button[type="submit"]');
-
-            const showError = (input) => {
-                input.classList.add('input-error');
-                isValid = false;
-            };
-            const clearError = (input) => {
-                input.classList.remove('input-error');
-            };
-
-            if (nameInput.value.trim().length < 3) {
-                showError(nameInput);
-            } else { clearError(nameInput); }
-
-            if (tgInput.value.trim().length < 3) {
-                showError(tgInput);
-            } else { clearError(tgInput); }
-
-            const phoneRegex = /^\+?[0-9\s\-()]{9,15}$/;
-            const phoneVal = phoneInput.value.trim().replace(/\s+/g, ''); 
-            if (!phoneRegex.test(phoneVal)) {
-                showError(phoneInput);
-            } else { clearError(phoneInput); }
-
-            if (isValid) {
-                submitBtn.innerText = 'ОБРАБОТКА...';
-                submitBtn.disabled = true;
-
-                const googleScriptURL = 'https://script.google.com/macros/s/AKfycbwwvrn6nNWql1vaAF6qx6kUNl5GcCGMU5z8vBaqtWgQ3ZQCXL7p6b_AP0GqC4Po_E2X8g/exec'; 
-                const paymentURL = 'https://secure.wayforpay.com/button/bce3402b76e97';
-
-                const formData = new FormData();
-                formData.append('name', nameInput.value.trim());
-                formData.append('phone', phoneInput.value.trim());
-                formData.append('telegram', tgInput.value.trim()); 
-                
-                const utms = getUTMs();
-                formData.append('utm_source', utms.utm_source);
-                formData.append('utm_medium', utms.utm_medium);
-                formData.append('utm_campaign', utms.utm_campaign);
-
-                fetch(googleScriptURL, { 
-                    method: 'POST', 
-                    body: formData,
-                    mode: 'no-cors' 
-                }).then(() => {
-                    window.location.href = paymentURL;
-                }).catch(e => {
-                    console.error(e);
-                    window.location.href = paymentURL;
-                });
-
-                if(typeof fbq !== 'undefined') {
-                    fbq('track', 'InitiateCheckout', { value: 29.00, currency: 'EUR' });
-                }
-            }
-        });
-
-        [document.getElementById('pop-name'), document.getElementById('pop-phone'), document.getElementById('pop-telegram')].forEach(input => {
-            input.addEventListener('input', () => {
-                input.classList.remove('input-error');
-            });
-        });
-    </script>
-</body>
-</html>
